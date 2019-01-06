@@ -1,7 +1,7 @@
 pipeline {
     agent any
     stages {
-        stage('Checkout code') {
+        stage('Checkout') {
             steps {
                 checkout scm
             }
@@ -9,6 +9,11 @@ pipeline {
         stage('Build') { 
             steps {
                 sh './mvnw clean package' 
+            }
+        }
+        stage('Deploy') { 
+            steps {
+                sh './mvnw spring-boot:run' 
             }
         }
     }
